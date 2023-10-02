@@ -1,0 +1,11 @@
+[Unit]
+Description=Pi Fan Control Service
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/pi-fan
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
