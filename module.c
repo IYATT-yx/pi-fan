@@ -12,17 +12,15 @@
 
 // 统计信息文件
 const char stat_file_path[] = "/proc/stat";
-// 错误日志文件
-const char error_log_file_path[] = "/var/log/pi-fan-log.log";
 // 温度文件
 const char temperature_file[] = "/sys/class/thermal/thermal_zone0/temp";
 
 void write_log(const char* info)
 {
-    FILE* file = fopen(error_log_file_path, "a");
+    FILE* file = fopen(ERROR_LOG_FILE_PATH, "a");
     if (NULL == file)
     {
-        file = fopen(error_log_file_path, "w");
+        file = fopen(ERROR_LOG_FILE_PATH, "w");
         if (NULL == file)
         {
             perror("写错误日志失败");
@@ -55,6 +53,8 @@ int get_cpu_usage()
         write_log("读取 CPU 统计文件失败");
         return -1;
     }
+
+    fclose(file);
 
     unsigned long user, nice, sys, idle, iowait, irq, softirq;
     static unsigned long pre_total = 0;
