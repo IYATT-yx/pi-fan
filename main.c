@@ -63,6 +63,6 @@ int main()
 
         set_pwm_by_volt(get_volt(temperature, usage));
 
-        delay(3000);
+        delay(DELAY);
     }
 }
