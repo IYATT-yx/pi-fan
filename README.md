@@ -8,6 +8,7 @@
 
 硬件：树莓派 cm4  
 系统：raspios bullseye arm64 2023.5.3  
+库：WiringPi 2.61-1
 
 ## 材料
 
