@@ -16,6 +16,12 @@ double get_volt(int temperature, int usgae)
 {
     static float volt1, volt2;
 
+    // 读取失败的情况
+    if (-1 == temperature || -1 == usgae)
+    {
+        return -1;
+    }
+
     // 40 度起转，达到 67 度时全速
     volt1 = (float)(temperature - 40) * 0.1f + 0.6f;
     // 占用率 50 起转，达到 77 全速
