@@ -6,9 +6,9 @@
 
 ## 测试环境
 
-硬件：树莓派 cm4  
-系统：raspios bullseye arm64 2023.5.3  
-库：WiringPi 2.61-1
+硬件：树莓派 CM4  
+系统：raspios 20240704 Debian 12  
+库：WiringPi 3.10
 
 ## 材料
 
