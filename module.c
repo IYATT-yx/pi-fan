@@ -105,7 +105,7 @@ void init_pwm()
     wiringPiSetupGpio();
     pinMode(PWM_PIN, PWM_OUTPUT);
     pwmSetMode(PWM_MODE_MS);
-    pwmSetClock(CLOCK_FREQ / PWM_FREQ / PWM_RANGE);
+    pwmSetClock(CLOCK_FREQ / (PWM_FREQ * PWM_RANGE));
     pwmSetRange(PWM_RANGE);
     pwmWrite(PWM_PIN, 0);
 }
