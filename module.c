@@ -63,6 +63,11 @@ int get_cpu_usage()
     sscanf(buffer, "%*s %lu %lu %lu %lu %lu %lu %lu", &user, &nice, &sys, &idle, &iowait, &irq, &softirq);
     unsigned long total = user + nice + sys + idle + iowait + irq + softirq;
 
+    if (total <= pre_total)
+    {
+        return 0;
+    }
+
     int usage = (int)(((double)(total - pre_total - (idle - pre_idle)) / (double)(total - pre_total)) * 100);
 
     pre_total = total;
@@ -102,16 +107,38 @@ void init_pwm()
     pwmSetMode(PWM_MODE_MS);
     pwmSetClock(CLOCK_FREQ / PWM_FREQ / PWM_RANGE);
     pwmSetRange(PWM_RANGE);
+    pwmWrite(PWM_PIN, 0);
 }
 
 void set_pwm_by_volt(double volt)
 {
+    if (volt <= 0.0)
+    {
+        pwmWrite(PWM_PIN, 0);
+        return;
+    }
+
     if (volt < VOLT_MIN || volt > VOLT_MAX)
     {
         write_log("设置电压范围错误");
         return;
     }
 
-    int duty = (int)((volt - VOLT_MIN) / (VOLT_MAX - VOLT_MIN) * PWM_RANGE);
+    if (VOLT_MAX <= VOLT_MIN)
+    {
+        pwmWrite(PWM_PIN, PWM_RANGE);
+        return;
+    }
+
+    int duty = (int)(((volt - VOLT_MIN) / (VOLT_MAX - VOLT_MIN)) * PWM_RANGE);
+    if (duty < 0)
+    {
+        duty = 0;
+    }
+    else if (duty > PWM_RANGE)
+    {
+        duty = PWM_RANGE;
+    }
+
     pwmWrite(PWM_PIN, duty);
 }
