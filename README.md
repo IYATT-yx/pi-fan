@@ -2,7 +2,7 @@
 
 这是一个树莓派调速风扇驱动。  
 
-![appearance](README_RESOURCE/appearance.jpg)
+![alt text](docs/image1.png)  
 
 ## 测试环境
 
@@ -12,17 +12,25 @@
 
 ## 材料
 
-* S8050 三极管  
-![S8050](README_RESOURCE/S8050.png)
-* 4010 5V 两线风扇
-* 1kΩ 电阻
+* 4010 5V 两线风扇  
+* S8050 D 331 三极管  
+![alt text](docs/image3.png)  
+* 330Ω 电阻  
+![alt text](docs/image2.png)  
+* 16V 220μF 电容  
+![alt text](docs/image4.png)  
+* 1N5819 肖特基二极管  
+![alt text](docs/image5.png)  
+* 0912 330μH（实测内阻0.3Ω）  
+![alt text](docs/image6.png)  
+
 
 ## 线路
 
-![diagram](README_RESOURCE/diagram.png)
+![alt text](docs/image7.png)  
 
 PWM 接树莓派引脚 18（BCM，默认），或者接图中另外三个也可，并修改源码 [parameter.h](parameter.h) 中的 PWM 引脚定义  
-![pins](README_RESOURCE/pins.png)
+![alt text](docs/image8.png)  
 
 ## 使用
 
